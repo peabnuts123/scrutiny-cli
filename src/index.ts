@@ -1,31 +1,31 @@
-import { argv } from 'yargs';
-
 import { analyse, IScrutinyAnalysis } from '@scrutiny/analysis';
 import { Logger, LogLevel, Timer } from '@scrutiny/core/util';
 
 // Configure logger verbosity
-Logger.setLogLevel(LogLevel.debug);
+// @TODO configurable log level
+Logger.setLogLevel(LogLevel.normal);
 
-// Start timer for deep install details
-Timer.start('DeepInstallDetails');
 
-// Faux async block
-(async () => {
-  let scrutinyAnalysis: IScrutinyAnalysis = await analyse(...argv._);
+// Encapsulated CLI function
+export default async function scrutinyCli(...packageSpecifiers: string[]) {
+  // Start timer for deep install details
+  Timer.start('DeepInstallDetails');
 
-  printSummary(scrutinyAnalysis);
+  let scrutinyAnalysis: IScrutinyAnalysis = await analyse(...packageSpecifiers);
+
+  printSummary(scrutinyAnalysis, packageSpecifiers);
   console.log("Successfully finished processing.");
-})();
+}
 
-function printSummary(scrutinyAnalysis: IScrutinyAnalysis) {
+function printSummary(scrutinyAnalysis: IScrutinyAnalysis, packageSpecifiers: string[]) {
   let elapsedTimeSeconds: number = Timer.stop('DeepInstallDetails');
   Logger.log(`Total processing time: ${elapsedTimeSeconds.toFixed(2)}s`);
 
   console.log();
-  console.log(`Summary of installing ${argv._.length} package${argv._.length > 1 ? 's' : ''}: ${argv._.join(', ')}`);
+  console.log(`Summary of installing ${packageSpecifiers.length} package${packageSpecifiers.length > 1 ? 's' : ''}: ${packageSpecifiers.join(', ')}`);
   const INDENT = '   -';
   const LIST_INDENT = '         ';
-  console.log(`${INDENT} Number of packages requested: ${argv._.length}`);
+  console.log(`${INDENT} Number of packages requested: ${packageSpecifiers.length}`);
   console.log();
   console.log(`${INDENT} Number of packages installed (total): ${scrutinyAnalysis.meta.allInstalledPackages.length}`);
   console.log();

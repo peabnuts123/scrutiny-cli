@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "description": "Perform Scrutiny analysis in a CLI environment",
   "main": "index.js",
+  "bin": {
+    "scrutiny-cli": "cli.js"
+  },
   "private": true,
   "scripts": {
     "debug": "npm run ts-node -- src/index.ts",
