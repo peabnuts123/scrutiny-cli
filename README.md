@@ -1,9 +1,6 @@
 # Scrutiny: CLI
-This is a cli frontend for performing Scrutiny analyses. 
-
-@TODO finish writing README
-
+This is a cli frontend for performing Scrutiny analyses.
 ## Backlog 
-
-  - Add npm binary to package.json
-  - Add loglevel yargs
+  - [ ] @TODO finish writing README
+  - [x] ~~Add npm binary to package.json~~
+  - [ ] Add loglevel yargs
