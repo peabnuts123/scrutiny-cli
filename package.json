@@ -14,7 +14,9 @@
     "build--clean": "npm run ts-node -- scripts/build--clean.ts",
     "lint": "tslint --project .",
     "deploy": "npm run ts-node -- scripts/deploy.ts --dry-run",
-    "test": "npm run ts-node -- scripts/test.ts"
+    "test": "npm run ts-node -- scripts/test.ts",
+    "link-dev": "npm link @scrutiny/core @scrutiny/analysis",
+    "unlink-dev": "npm unlink @scrutiny/core @scrutiny/analysis"
   },
   "keywords": [
     "peabnuts123",
@@ -39,8 +41,8 @@
     "mocha": "^3.5.0",
     "ts-node": "^5.0.1",
     "tsconfig-paths": "^3.1.3",
-    "tslint": "^5.9.1",
-    "typescript": "^2.8.1"
+    "tslint": "^5.11.0",
+    "typescript": "^2.9.2"
   },
   "engines": {
     "node": "^8.10.0",
